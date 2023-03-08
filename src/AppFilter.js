@@ -26,7 +26,6 @@ export default class App extends React.Component {
   };
 
   addTask = e => {
-    console.log("Add task", e);
     let updatedTasks = [...this.state.tasks, {
       id: parseInt(Math.random() * 100),
       content: e,
@@ -35,7 +34,6 @@ export default class App extends React.Component {
     this.setState({ tasks: updatedTasks })
   }
   toggleDone(id) {
-    console.log("toggle", id)
     const updatedTasks = this.state.tasks.map((e) => {
       if (id === e.id) {
         // use object spread to make a new obkect
