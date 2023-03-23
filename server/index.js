@@ -64,10 +64,6 @@ app.get('/products', (req, res) => {
 })
 
 app.get('/products/:id', function (req, res) {
-	res.send('id is set to ' + req.params.id)
-})
-
-app.get('/products/:id', function (req, res) {
 	let id = req.params.id
 	let product = Products.find((product) => product.id === id)
 	if (product) res.json(product)
