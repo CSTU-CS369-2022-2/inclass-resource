@@ -1,7 +1,11 @@
 import express from 'express'
+import logger from 'morgan'
 
 const app = express()
 const port = 4000
+
+app.use(logger('short'))
+app.use(express.json())
 
 app.get('/', (req, res) => {
 	res.end('HelloWorld')
@@ -68,6 +72,20 @@ app.get('/products/:id', function (req, res) {
 	let product = Products.find((product) => product.id === id)
 	if (product) res.json(product)
 	else res.status(404).json({ error: `Not found product with id ${id}` })
+})
+
+app.post('/products', (req, res) => {
+	console.log(req.body)
+	if (req.is('json')) {
+		let product = req.body
+		console.log('Body: ', product)
+		Products.push(product)
+
+		// แก้ไขให้คืนค่า product ที่เพิ่มใหม่ เพื่อให้สอดคล้องกับการทํางานของ client
+		res.json(product)
+	} else {
+		res.status(400).end(`Expected JSON product data!\n${req.body}`)
+	}
 })
 
 //make server start listening on a specified port

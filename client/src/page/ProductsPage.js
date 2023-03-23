@@ -4,6 +4,7 @@ import {
 	useLoaderData,
 	useSearchParams,
 	useSubmit,
+	redirect,
 } from 'react-router-dom'
 // import { getProducts } from '../productsData'
 
@@ -52,6 +53,9 @@ const ProductsPage = () => {
 				</fieldset>
 			</Form>
 			<hr />
+			<Form method="post">
+				<button type="submit">Add new product</button>
+			</Form>
 
 			{products.length ? (
 				<ul className="list-item">{list}</ul>
@@ -84,4 +88,11 @@ export const productsLoader = async () => {
 		throw Error('Could not fetch the products')
 	}
 	return res.json()
+}
+
+const genId = () => Math.random().toString(36).substring(2, 9)
+
+export async function action() {
+	const productId = genId()
+	return redirect(`/products/${productId}/new`)
 }
