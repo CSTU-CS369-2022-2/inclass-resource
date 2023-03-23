@@ -23,7 +23,7 @@ git pull origin main
 ```
 
 # How to download repository without using Git
-![How to download without git](public/how-to-download-without-git.png)
+![How to download without git](how-to-download-without-git.png)
 
 
 ## How to test with Jest and React Testing Framework
