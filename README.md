@@ -3,6 +3,14 @@
 ```
 git clone https://github.com/CSTU-CS369-2022-2/inclass-resource.git
 cd inclass-resource
+cd client
+npm install
+npm start
+```
+
+```
+cd inclass-resource
+cd server
 npm install
 npm start
 ```
