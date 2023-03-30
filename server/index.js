@@ -1,76 +1,36 @@
-import express from 'express'
+// file: index.js
+import express from 'express';
+import logger from 'morgan';
 
-const app = express()
-const port = 4000
+// routers
+import productRouter from './router/productRouter.js'; 
+// our own modules need to put file extension .js
 
-app.get('/', (req, res) => {
-	res.end('HelloWorld')
+const app = express();
+const PORT = 4000;
+
+// middleware logger
+app.use(logger('short'));
+
+// built-in middleware to handle urlencoded form data
+app.use(express.urlencoded({ extended: false }));
+
+// built-in middleware for json 
+app.use(express.json());
+
+// routes
+app.use('/api/product', productRouter);
+
+app.get('/', (req, res) => {  res.status(401).send({error:'Invalid Endport'}); });
+app.get('*', (req, res) => { 
+    res.status(404).json(new Error("Not Found Page!"+ req.url))
 })
 
-const Products = [
-	{
-		category: 'Sporting Goods',
-		price: 49.99,
-		stocked: true,
-		name: 'Football',
-		id: '1234',
-	},
-	{
-		category: 'SportingGoods',
-		price: 9.99,
-		stocked: true,
-		name: 'Baseball',
-		id: '3444',
-	},
-	{
-		category: 'SportingGoods',
-		price: 29.99,
-		stocked: false,
-		name: 'Basketball',
-		id: '1344',
-	},
-	{
-		category: 'Electronics',
-		price: 99.99,
-		stocked: true,
-		name: 'iPodTouch',
-		id: '3422',
-	},
-	{
-		category: 'Electronics',
-		price: 399.99,
-		stocked: false,
-		name: 'iPhone5',
-		id: '2567',
-	},
-	{
-		category: 'Electronics',
-		price: 199.99,
-		stocked: true,
-		name: 'Nexus7',
-		id: '3214',
-	},
-	{
-		category: 'Kitchenware',
-		price: 9.99,
-		stocked: true,
-		name: 'Pot',
-		id: '1414',
-	},
-]
-
-app.get('/products', (req, res) => {
-	res.json(Products)
+// for error handling
+app.use((err, req, res, next) => {
+    console.error(`${err.name}: ${err.message}`)
+    res.status(500).send(err.message);
 })
 
-app.get('/products/:id', function (req, res) {
-	let id = req.params.id
-	let product = Products.find((product) => product.id === id)
-	if (product) res.json(product)
-	else res.status(404).json({ error: `Not found product with id ${id}` })
-})
-
-//make server start listening on a specified port
-app.listen(port, () => {
-	console.log(`Server started at port ${port}`)
-})
+// make server start listening on a specified port
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
