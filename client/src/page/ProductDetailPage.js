@@ -1,5 +1,6 @@
 import { useLoaderData } from 'react-router-dom'
 import BreadCrumbs from '../component/BreadCrumbs'
+
 // import { getProduct } from '../productsData'
 
 const ProductDetailPage = () => {
@@ -46,7 +47,7 @@ export default ProductDetailPage
 
 export const loader = async ({ params }) => {
 	const { id } = params
-	const res = await fetch('/products/' + id)
+	const res = await fetch('/api/product/' + id)
 	let product = await res.json()
 	if (!res.ok) {
 		throw Error(product.error)

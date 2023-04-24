@@ -1,2 +1,11 @@
-const Home = () => (<><h1>Welcome</h1><div>You are at home!</div></>);
-export default Home; 
+import AuthStatus from './AuthStatus'
+
+const Home = () => (
+	<>
+		<h1>Welcome</h1>
+		<div>You are at home!</div>
+		<AuthStatus />
+	</>
+)
+
+export default Home

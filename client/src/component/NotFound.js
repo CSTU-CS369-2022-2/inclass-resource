@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
-function NotFound() {
-  return (
-    <div>
-      <h2>Page not found!</h2>
-      <p>Sorry this page could not be found!</p>
-      <p>
-        Go to the <Link to="/">Homepage</Link>
-      </p>
-    </div>
-  );
-}
+import { Link } from 'react-router-dom'
 
-export default NotFound;
+export default function NotFound() {
+	return (
+		<div>
+			<h2>Page not found!</h2>
+			<p>Sorry this page could not be found!</p>
+			<p>
+				Go to the <Link to="/">Homepage</Link>
+			</p>
+		</div>
+	)
+}

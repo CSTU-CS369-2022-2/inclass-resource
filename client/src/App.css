@@ -1,181 +1,181 @@
 nav {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
+	display: flex;
+	flex-direction: row;
+	gap: 1em;
 }
 
 nav a {
-    text-decoration: none;
+	text-decoration: none;
 }
 
 nav a,
 nav a:visited {
-    color: blue;
+	color: blue;
 }
 
 nav a:hover,
 nav a:active,
 nav a:focus {
-    color: #c33;
+	color: #c33;
 }
 
 nav a.active {
-    font-weight: bold;
-    color: red;
-    text-decoration: underline;
+	font-weight: bold;
+	color: red;
+	text-decoration: underline;
 }
 
 /* search input form */
 #search-form {
-    margin: auto;
+	margin: auto;
 }
 
 #search-form input,
 button {
-    height: 2em;
-    border-radius: .25rem;
-    margin: .5rem;
+	height: 2em;
+	border-radius: 0.25rem;
+	margin: 0.5rem;
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    margin-top: 5vh;
-    font-size: .8em;
-    color: gray;
+	position: relative;
+	bottom: 0;
+	margin-top: 5vh;
+	font-size: 0.8em;
+	color: gray;
 }
 
 /* product page */
 .item {
-    display: flex;
-    gap: 0.5em;
-    flex-direction: column;
+	display: flex;
+	gap: 0.5em;
+	flex-direction: column;
 }
 
 .item div {
-    display: flex;
-    gap: 1em;
-    align-items: flex-start;
+	display: flex;
+	gap: 1em;
+	align-items: flex-start;
 }
 
 .item div span {
-    font-weight: bold;
-    width: 8rem;
+	font-weight: bold;
+	width: 8rem;
 }
 
 .info {
-    padding: .25rem;
-    color: #0c5460;
-    background-color: #d1ecf1;
-    border-color: #bee5eb;
+	padding: 0.25rem;
+	color: #0c5460;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
 }
 
 .danger {
-    padding: .25rem;
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
+	padding: 0.25rem;
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
 }
 
 .danger-color {
-    color: #721c24;
+	color: #721c24;
 }
 
 .list-item {
-    margin: auto;
-    list-style: none;
-    padding-left: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    box-sizing: border-box;
-    gap: .3rem;
+	margin: auto;
+	list-style: none;
+	padding-left: 0;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	box-sizing: border-box;
+	gap: 0.3rem;
 }
 
 @media screen and (min-width: 600px) {
-    .list-item {
-        grid-template-columns: repeat(4, 1fr);
-    }
+	.list-item {
+		grid-template-columns: repeat(4, 1fr);
+	}
 }
 
 .list-item li {
-    padding: 0.8rem;
-    border-radius: 5px;
+	padding: 0.8rem;
+	border-radius: 5px;
 }
 
 .list-item li:hover {
-    background-color: #d1ecf1;
+	background-color: #d1ecf1;
 }
 
 .list-item li {
-    border: 1px solid #7b898c;
-    background-color: white;
+	border: 1px solid #7b898c;
+	background-color: white;
 }
 
 .list-item a:visited,
 .list-item a {
-    color: #333;
-    text-decoration: none;
+	color: #333;
+	text-decoration: none;
 }
 
 /* breadcrumbs */
 .breadcrumbs {
-    max-width: 1200px;
-    margin: 20px auto;
+	max-width: 1200px;
+	margin: 20px auto;
 }
 
-.breadcrumbs>* {
-    display: inline-block;
-    margin-right: 10px;
+.breadcrumbs > * {
+	display: inline-block;
+	margin-right: 10px;
 }
 
 .breadcrumbs .crumb:after {
-    content: '>';
-    margin-left: 10px;
+	content: '>';
+	margin-left: 10px;
 }
 
 .breadcrumbs .crumb:last-child:after {
-    display: none;
+	display: none;
 }
 
 .breadcrumbs .crumb a {
-    color: #555;
+	color: #555;
 }
 
 /* product edit page */
 .product-form {
-    display: flex;
-    max-width: 40rem;
-    flex-direction: column;
-    gap: 1rem;
+	display: flex;
+	max-width: 40rem;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .product-form label {
-    display: flex;
-    min-height: 2rem;
+	display: flex;
+	min-height: 2rem;
 }
 
 .product-form p span,
 .product-form label span {
-    width: 8rem;
+	width: 8rem;
 }
 
 .product-form p input,
 .product-form label input,
 .product-form label textarea {
-    flex-grow: 2;
+	flex-grow: 2;
 }
 
 .product-form p:last-child,
 .control-button {
-    display: flex;
-    gap: 0.5rem;
-    margin: 0 0 0 8rem;
+	display: flex;
+	gap: 0.5rem;
+	margin: 0 0 0 8rem;
 }
 
-.product-form p:last-child button[type="button"] {
-    color: inherit;
+.product-form p:last-child button[type='button'] {
+	color: inherit;
 }
 
 .control-button {
-    margin-top: 3rem;
+	margin-top: 3rem;
 }

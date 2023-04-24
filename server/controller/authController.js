@@ -50,9 +50,7 @@ const handleLogin = async (req, res) => {
 			{ email: foundUser.email },
 			process.env.REFRESH_TOKEN_SECRET,
 			{
-				expiresIn: process.env.REFRESH_TOKEN_TIME
-					? process.env.REFRESH_TOKEN_TIME
-					: '1d',
+				expiresIn: process.env.REFRESH_TOKEN_TIME ?? '1d',
 			}
 		)
 
@@ -107,11 +105,11 @@ const handleLogout = async (req, res) => {
 const handleRefreshToken = async (req, res) => {
 	const cookies = req.cookies
 	if (!cookies?.jwt) return res.sendStatus(401)
-	
+
 	const refreshToken = cookies.jwt
 	try {
 		const foundUser = await User.findByRefreshToken(refreshToken)
-		
+
 		// evaluate jwt
 		jwt.verify(
 			refreshToken,

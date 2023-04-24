@@ -79,7 +79,7 @@ export default ProductsPage
 
 export const productsLoader = async () => {
 	// const res = await getProducts();
-	const res = await fetch('/products')
+	const res = await fetch('/api/product')
 	if (!res.ok) {
 		throw Error('Could not fetch the products')
 	}
