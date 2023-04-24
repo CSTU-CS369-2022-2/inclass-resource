@@ -58,8 +58,10 @@ export const put = (req, res) => {
 	// Validate Request
 	const data = req.body || {}
 	console.log(data)
+	
 	if (!data || data.id != req.params.id)
 		return res.status(422).send({ errors: 'id must be alphanumeric.' })
+	
 	// Find Product and update it with the request body
 	Products.findOneAndUpdate(
 		{ id: req.params.id },
@@ -94,8 +96,10 @@ export const put = (req, res) => {
 export const remove = (req, res) => {
 	const data = req.body || {}
 	console.log('Data', data)
+	
 	if (!data || data.id != req.params.id)
 		return res.status(422).send({ errors: 'id must be alphanumeric.' })
+	
 	Products.deleteOne({ id: data.id })
 		.then((r) => {
 			if (r.acknowledged && r.deletedCount >= 1)

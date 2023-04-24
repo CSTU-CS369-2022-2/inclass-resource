@@ -2,6 +2,7 @@ import express from 'express'
 import logger from 'morgan'
 import * as dotenv from 'dotenv'
 import * as url from 'url'
+import mongooseDbConnect from './config/dbConnect.js'
 
 // authorization
 import verifyJWT from './middleware/verifyJWT.js'
@@ -15,6 +16,8 @@ const app = express()
 
 dotenv.config()
 const PORT = process.env.PORT || 4000
+
+mongooseDbConnect()
 
 // middleware logger
 app.use(logger('short'))
@@ -33,13 +36,13 @@ app.use('/', express.static(__dirname + '/public'))
 app.use('/auth', authRouter) // register, login, logout, refreshToken
 
 // test to verify JWT
-app.get('/secret', verifyJWT,
-(req, res) => res.json({ success: true, message: 'Secret Page' })
-);
+app.get('/secret', verifyJWT, (req, res) =>
+	res.json({ success: true, message: 'Secret Page' })
+)
 
 // REST for products or user
 app.use('/api/product', productRouter)
-app.use('/api/user', verifyJWT, userRouter);
+app.use('/api/user', verifyJWT, userRouter)
 
 app.get('/', (req, res) => {
 	res.status(401).send({ error: 'Invalid Endport' })
