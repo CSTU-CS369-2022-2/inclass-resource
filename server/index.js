@@ -11,6 +11,7 @@ import verifyJWT from './middleware/verifyJWT.js'
 import productRouter from './router/productRouter.js'
 import userRouter from './router/userRouter.js'
 import authRouter from './router/authRouter.js'
+import ordersRouter from './router/ordersRouter.js'
 
 const app = express()
 
@@ -43,6 +44,7 @@ app.get('/secret', verifyJWT, (req, res) =>
 // REST for products or user
 app.use('/api/product', productRouter)
 app.use('/api/user', verifyJWT, userRouter)
+app.use('/api/orders', ordersRouter)
 
 app.get('/', (req, res) => {
 	res.status(401).send({ error: 'Invalid Endport' })
