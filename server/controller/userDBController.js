@@ -26,7 +26,7 @@ export const create = async (req, res) => {
 		//encrypt the password
 		const hashedPwd = await bcrypt.hash(password, 10)
 		//create and store the new user
-		const result = await User.insert({ ...req.body, password: hashedPwd })
+		const result = await User.create({ ...req.body, password: hashedPwd })
 		console.log(result)
 		res.status(201).json({ success: `New user ${name} created!` })
 	} catch (err) {
@@ -53,7 +53,7 @@ export const get = (req, res) => {
 }
 
 // Update a user identified by the email in the request
-export const put = (req, res) => {
+export const put = async (req, res) => {
 	// Validate Request
 	const data = req.body || {}
 	console.log(data, req.params.email)
@@ -61,8 +61,16 @@ export const put = (req, res) => {
 	if (!data || !req.params.email)
 		return res.status(422).send({ error: 'email must be alphanumeric.' })
 
+	if (req.body.password) {
+		const hashedPwd = await bcrypt.hash(req.body.password, 10)
+		req.body.password = hashedPwd
+	}
+
 	// Find Product and update it with the request body
-	User.findAndUpdate(req.params.email, req.body, true)
+	User.findOneAndUpdate({ email: req.params.email }, req.body, {
+		upsert: false,
+		returnOriginal: false,
+	})
 		.then((user) => {
 			if (!user) {
 				return res.status(404).send({

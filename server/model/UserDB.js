@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: true,
-		minlength: [40], // bcrypt hash binary size is 40+
+		minLength: [40], // bcrypt hash binary size is 40+
 	},
 	roles: {
 		User: { type: Number, default: 2001 },
