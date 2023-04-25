@@ -11,8 +11,6 @@ const insertAnOrder = async () => {
 		}).exec()
 		
 		if (products && products?.length > 0) {
-			const now = Date.now()
-
 			var anOrder = new Orders({
 				orderNo: now.toString(),
 				orderedBy: {
