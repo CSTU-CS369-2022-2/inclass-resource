@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
 		minLength: [40], // bcrypt hash binary size is 40+
 	},
 	roles: {
-		User: { type: Number, default: 2001 },
-		Editor: { type: Number, default: 1984 },
-		Admin: { type: Number, default: 5150 },
+		User: { type: Number },
+		Editor: { type: Number },
+		Admin: { type: Number },
 	},
 	refreshToken: { type: String },
 	bio: { type: String, required: false },
@@ -47,3 +47,5 @@ userSchema.statics.findByRefreshToken = async function (refreshToken) {
 let User = mongoose.model('User', userSchema, 'users')
 
 export default User
+
+// check more on validation at http://mongoosejs.com/docs/validation.html

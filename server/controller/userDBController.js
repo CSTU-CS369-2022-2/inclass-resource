@@ -3,6 +3,9 @@ import bcrypt from 'bcrypt'
 
 export const list = async (req, res) => {
 	const result = await User.find()
+		.sort({ name: 1 })
+		.select(['_id', 'name', 'email', 'roles'])
+		.exec()
 	return res.json(result)
 }
 
@@ -56,37 +59,40 @@ export const get = (req, res) => {
 export const put = async (req, res) => {
 	// Validate Request
 	const data = req.body || {}
-	console.log(data, req.params.email)
 
 	if (!data || !req.params.email)
 		return res.status(422).send({ error: 'email must be alphanumeric.' })
 
+	// if update password, hash the password before save
 	if (req.body.password) {
 		const hashedPwd = await bcrypt.hash(req.body.password, 10)
 		req.body.password = hashedPwd
 	}
 
-	// Find Product and update it with the request body
-	User.findOneAndUpdate({ email: req.params.email }, req.body, {
-		upsert: false,
-		returnOriginal: false,
-	})
-		.then((user) => {
-			if (!user) {
-				return res.status(404).send({
-					error: 'User not found with email ' + req.params.email,
-				})
+	// Find User and update it with the request body
+	try {
+		const foundUser = await User.findOneAndUpdate(
+			{ email: req.params.email },
+			req.body,
+			{
+				upsert: false,
+				returnOriginal: false,
 			}
-			res.send(user)
-		})
-		.catch((err) => {
-			if (err.kind === 'ObjectId') {
-				return res.status(404).send({
-					error: 'User not found with email ' + req.params.email,
-				})
-			}
-			return res.status(500).send({
-				error: 'Error updating User with email ' + req.params.email,
+		)
+		if (!foundUser) {
+			return res.status(404).send({
+				error: 'User not found with email ' + req.params.email,
 			})
+		}
+		return res.json(foundUser)
+	} catch (err) {
+		if (err.kind === 'ObjectId') {
+			return res.status(404).send({
+				error: 'User not found with email ' + req.params.email,
+			})
+		}
+		return res.status(500).send({
+			error: 'Error updating User with email ' + req.params.email,
 		})
+	}
 }
