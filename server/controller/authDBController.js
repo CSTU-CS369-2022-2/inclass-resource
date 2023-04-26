@@ -54,7 +54,7 @@ const handleLogin = async (req, res) => {
 			{ email },
 			{ refreshToken },
 			{
-				upsert: true, // Make this update into an upsert
+				upsert: false, // Make this update into an upsert
 			}
 		)
 
@@ -102,7 +102,7 @@ const handleLogout = async (req, res) => {
 		{ email: foundUser.email },
 		{ refreshToken: '' },
 		{
-			upsert: true, // Make this update into an upsert
+			upsert: false, // Make this update into an upsert
 		}
 	)
 
