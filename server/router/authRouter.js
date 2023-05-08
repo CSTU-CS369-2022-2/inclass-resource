@@ -1,13 +1,15 @@
-import express from 'express'
-import { create } from '../controller/userController.js'
-import { handleLogin, handleLogout, handleRefreshToken } from '../controller/authController.js'
+// file: /router/authRouter.js 
 
-let router = express.Router()
+import express from 'express';
+import { create } from '../controller/userDBController.js';
+import { handleLogin, handleLogout, handleRefreshToken } from '../controller/authDBController.js';
 
-router.post('/', handleLogin)
-router.get('/', handleLogout)
+let router = express.Router();
+
+router.post('/', handleLogin);
+router.get('/', handleLogout);
 
 router.get('/refresh', handleRefreshToken)
-router.post('/register', create)
+router.post('/register', create);
 
-export default router
+export default router;

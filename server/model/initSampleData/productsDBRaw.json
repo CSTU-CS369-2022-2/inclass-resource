@@ -1,0 +1,28 @@
+[
+      {"category": "Sporting Goods", "price": 49.99, "stocked": true, "name": "Football", "id":"1234"},
+{"category": "Sporting Goods", "price": 9.99, "stocked": true, "name": "Baseball", "id":"3444"},
+{"category": "Sporting Goods", "price": 29.99, "stocked": false, "name": "Basketball", "id":"1344"},
+{"category": "Electronics", "price": 99.99, "stocked": true, "name": "iPod Touch", "id":"3422"},
+{"category": "Electronics", "price": 399.99, "stocked": false, "name": "iPhone 5", "id":"2567"},
+{"category": "Electronics", "price": 199.99, "stocked": true, "name": "Nexus 7", "id":"3214"},
+{"category": "Kitchenware", "price": 9.99, "stocked": true, "name": "Pot", "id":"1414"},
+{
+  "category": "Food",
+  "name": "Apple Pie",
+  "price": 50,
+  "stocked": true,
+  "id": "324124"
+},{
+  "category": "Jewelry",
+  "name": "Necklace",
+  "price": 232,
+  "stocked": true,
+  "id": "faskf213"
+},{
+  "category": "Food",
+  "name": "Cheese Cake",
+  "price": 190,
+  "stocked": true,
+  "id": "213131",
+  "detail": "Very Yummy"
+}]

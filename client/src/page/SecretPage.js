@@ -1,35 +1,31 @@
-import { useEffect, useState } from 'react'
-
-//import { useAuth } from "../utils/AuthProvider";
-import useFetchPrivate from '../utils/useFetchPrivate'
-
-import Spinner from '../component/Spinner'
+// file: ./page/SecretPage.js
+import { useState, useEffect } from "react";
+import Spinner from "../component/Spinner";
+import useFetchPrivate from "../utils/useFetchPrivate";
 
 export default function SecretPage() {
-	// const auth = useAuth()
-	const [secretData, setData] = useState()
+  const [secretData, setData] = useState();
+  const { loading, callFetch } = useFetchPrivate();
 
-	const { loading, callFetch } = useFetchPrivate()
+  useEffect(() => {
+    const getSecretData = async () => {
+      try {
+        const { response, data } = await callFetch("/secret");
+        if (response.ok) {
+          setData(JSON.stringify(data));
+        }
+      } catch (error) { 
+        throw error;
+      }
+    };
 
-	useEffect(() => {
-		const getSecretData = async () => {
-			const { response, data } = await callFetch('/secret')
-			if (response.ok) {
-				setData(JSON.stringify(data))
-			}
-		}
-		try {
-			getSecretData()
-		} catch (error) {
-			console.error(error)
-			throw error
-		}
-	}, [callFetch])
+    getSecretData();
+  }, [callFetch]);
 
-	return (
-		<>
-			<h1>Very Secret Page!</h1>
-			{loading ? <Spinner /> : <div>Content from the server: {secretData}</div>}
-		</>
-	)
+  return (
+    <>
+      <h1>Very Secret Page!</h1>
+      {loading ? <Spinner /> : <div>Content from the server: {secretData}</div>}
+    </>
+  );
 }
