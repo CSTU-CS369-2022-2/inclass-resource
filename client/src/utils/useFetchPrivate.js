@@ -70,10 +70,8 @@ let useFetchPrivate = () => {
         if (response?.status === 403) {
           // token expire or loss?
           const newAccessToken = await refreshToken();
-          const options = setAuthorizationHeader(
-            config,
-            `Bearer ${newAccessToken}`
-          );
+          const options = setAuthorizationHeader(config, newAccessToken);
+
           let response = await originalRequest(url, options);
           let data = {} 
           if (response.ok) {
